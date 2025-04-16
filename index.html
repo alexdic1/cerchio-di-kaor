@@ -6,9 +6,28 @@
   <title>Il Cerchio di Kaor</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <style>
+    .audio-button {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid #ccc;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      z-index: 1000;
+    }
+    .audio-button:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+  </style>
 </head>
 <body>
-  <audio autoplay loop>
+  <button class="audio-button" onclick="document.getElementById('ritual-audio').play()">🎵 Risveglia l’eco del Velo</button>
+  <audio id="ritual-audio" loop>
     <source src="medieval-music.mp3" type="audio/mpeg">
     Il tuo browser non supporta l'audio.
   </audio>
@@ -20,7 +39,7 @@
       <h2 class="fade">🕯 Nome dell'Ordine</h2>
       <p class="fade"><strong>Il Cerchio di Kaor</strong><br>Non è un nome. È un'eco. Kaor non si dice, si percepisce.</p>
       <h2 class="fade">📖 Origini dell'Ordine</h2>
-      <p class="fade">Il Cerchio di Kaor nacque da un sogno condiviso da sette viandanti, sconosciuti tra loro, provenienti da angoli diversi del mondo. Al loro risveglio, ognuno trovò inciso sul proprio collo un simbolo che non poteva vedere, ma che gli altri riconoscevano: una spirale, un cerchio incompleto, linee convergenti. Questo marchio non era tatuaggio né ferita, ma segno vivo, pulsante. Quando uno degli altri lo osservava, una parola affiorava alla mente: Kaor. I sette si incontrarono in un luogo che nessuno ha mai saputo descrivere. Non era su nessuna mappa. Non era dopo, non era prima. Lì, nacque il Cerchio.</p>
+      <p class="fade">Il Cerchio di Kaor nacque da un sogno condiviso da sette viandanti...</p>
       <h2 class="fade">🩸 Scopo e Ordinamento</h2>
       <p class="fade"><em>“Non costruire un tempio. Sii il tempio.”</em></p>
       <ul class="fade">
@@ -36,11 +55,11 @@
         <li>🄂 La Via del Vento Interno – È il Portavoce.</li>
       </ul>
       <h2 class="fade">🔎 Simbolismo</h2>
-      <p class="fade">Il Sigillo di Kaor rappresenta il Nome non detto, il Vuoto prima della forma, l’occhio che non guarda ma sente.<br><strong>Parola Cifrata:</strong> "Almaredos"</p>
+      <p class="fade">Il Sigillo di Kaor rappresenta il Nome non detto, il Vuoto prima della forma...</p>
       <h2 class="fade">✨ Il Giuramento dell'Iniziato</h2>
-      <blockquote class="fade">"Nel Nome che non si dice, sotto il Velo che non si alza, io, ombra senza passato, giuro di custodire i segni, di spezzare i veli, e di ritrovare il Ricordo perduto. Così sia."</blockquote>
+      <blockquote class="fade">"Nel Nome che non si dice, sotto il Velo che non si alza...</blockquote>
       <h2 class="fade">🔒 Accesso</h2>
-      <p class="fade">Il sito visibile è solo il Velo. I contenuti arcani vengono sbloccati con la parola Almaredos. Ogni ruolo viene assegnato dopo le Prove, e viene ricordato, non scelto.</p>
+      <p class="fade">Il sito visibile è solo il Velo...</p>
       <p class="fade"><strong>Il Cerchio di Kaor non ha centro.</strong><br>“Chi vi entra, si perde. E solo chi si perde, può vedere.”</p>
     </div>
   </div>
