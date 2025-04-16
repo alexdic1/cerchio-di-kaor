@@ -7,6 +7,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
   <style>
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 1.5s ease-in forwards;
+    }
     .audio-button {
       position: fixed;
       top: 20px;
@@ -31,37 +38,54 @@
     <source src="medieval-music.mp3" type="audio/mpeg">
     Il tuo browser non supporta l'audio.
   </audio>
+
   <div class="content">
     <img src="kaor-sigil.png" alt="Sigillo del Cerchio di Kaor" class="sigillo">
+
     <div class="text-container">
-      <h1>📜 Codice Sacro del Cerchio di Kaor</h1>
-      <p class="fade">“Chi parla ha dimenticato. Chi tace ricorda.”</p>
-      <h2 class="fade">🕯 Nome dell'Ordine</h2>
-      <p class="fade"><strong>Il Cerchio di Kaor</strong><br>Non è un nome. È un'eco. Kaor non si dice, si percepisce.</p>
-      <h2 class="fade">📖 Origini dell'Ordine</h2>
-      <p class="fade">Il Cerchio di Kaor nacque da un sogno condiviso da sette viandanti...</p>
-      <h2 class="fade">🩸 Scopo e Ordinamento</h2>
-      <p class="fade"><em>“Non costruire un tempio. Sii il tempio.”</em></p>
-      <ul class="fade">
-        <li><strong>1. Ascensione della Pietra Imperfetta:</strong> L’adepto è una pietra grezza...</li>
-        <li><strong>2. Fratellanza Oscura e Silente:</strong> Il Cerchio unisce anime di ogni provenienza...</li>
-        <li><strong>3. Conoscenza oltre la Forma:</strong> La verità non si insegna. Si risveglia...</li>
-        <li><strong>4. Fondazione della Città Soglia:</strong> La Città del Cerchio non esiste ancora...</li>
+      <h1 class="text-yellow-300 uppercase fade-in">📜 Codice Sacro del Cerchio di Kaor</h1>
+      <p class="italic fade-in">“Chi parla ha dimenticato. Chi tace ricorda.”</p>
+
+      <h2 class="text-yellow-300 uppercase mt-8 fade-in">🕯 Il Nome dell’Ordine</h2>
+      <p class="fade-in"><strong>Il Cerchio di Kaor</strong><br>Non è un nome. È un’eco. Kaor non si dice, si percepisce.</p>
+
+      <h2 class="text-yellow-300 uppercase mt-8 fade-in">📖 Origine del Cerchio</h2>
+      <p class="fade-in">Nacque da un sogno. Sette viandanti, ignari l’uno dell’altro, sognarono la stessa visione...</p>
+
+      <h2 class="text-yellow-300 uppercase mt-8 fade-in">🩸 Scopo e Ordinamento</h2>
+      <p class="italic fade-in">“Non costruire un tempio. Sii il tempio.”</p>
+      <ul class="fade-in">
+        <li><strong>1. Ascensione della Pietra Imperfetta:</strong> L’iniziato è pietra grezza...</li>
+        <li><strong>2. Fratellanza Oscura e Silente:</strong> Non esistono gradi visibili. Solo voci nel buio.</li>
+        <li><strong>3. Conoscenza oltre la Forma:</strong> Il sapere è un veleno dolce che cura.</li>
+        <li><strong>4. Fondazione della Città Soglia:</strong> La città del Cerchio non ha luogo fisico.</li>
       </ul>
-      <h2 class="fade">🧭 I Tre Cammini</h2>
-      <ul class="fade">
+
+      <h2 class="text-yellow-300 uppercase mt-8 fade-in">🧭 I Tre Cammini</h2>
+      <ul class="fade-in">
         <li>🄁 Il Sentiero dell’Occhio Serrato – È il Guardiano.</li>
         <li>🔀 Il Cammino dell’Anello Frammentato – È il Mutatore.</li>
         <li>🄂 La Via del Vento Interno – È il Portavoce.</li>
       </ul>
-      <h2 class="fade">🔎 Simbolismo</h2>
-      <p class="fade">Il Sigillo di Kaor rappresenta il Nome non detto, il Vuoto prima della forma...</p>
-      <h2 class="fade">✨ Il Giuramento dell'Iniziato</h2>
-      <blockquote class="fade">"Nel Nome che non si dice, sotto il Velo che non si alza...</blockquote>
-      <h2 class="fade">🔒 Accesso</h2>
-      <p class="fade">Il sito visibile è solo il Velo...</p>
-      <p class="fade"><strong>Il Cerchio di Kaor non ha centro.</strong><br>“Chi vi entra, si perde. E solo chi si perde, può vedere.”</p>
+
+      <h2 class="text-yellow-300 uppercase mt-8 fade-in">🔎 Il Simbolismo</h2>
+      <p class="fade-in">Il Sigillo di Kaor rappresenta il Nome non detto, il Vuoto prima della Forma, l’Occhio che non guarda, ma sente.<br><strong>Parola Cifrata:</strong> Almaredos</p>
+
+      <h2 class="text-yellow-300 uppercase mt-8 fade-in">✨ Il Giuramento dell’Iniziato</h2>
+      <blockquote class="italic fade-in">“Nel Nome che non si dice, sotto il Velo che non si alza, io, ombra senza passato, giuro di custodire i segni, di spezzare i veli, e di ritrovare il Ricordo perduto. Così sia.”</blockquote>
+
+      <h2 class="text-yellow-300 uppercase mt-8 fade-in">🔒 Accesso al Velo</h2>
+      <p class="fade-in">Il sito visibile è solo un velo. I contenuti arcani si rivelano solo a chi conosce la parola: Almaredos. Il Ruolo non si sceglie. Si ricorda, dopo le Prove.</p>
+
+      <p class="mt-6 fade-in"><strong>Il Cerchio di Kaor non ha centro.</strong><br>“Chi vi entra, si perde. E solo chi si perde, può vedere.”</p>
     </div>
   </div>
+
+<div style="text-align: center; margin-top: 3rem;">
+  <a href="quiz.html" class="audio-button" style="padding: 1rem 2rem; font-size: 1.2rem; background-color: #d4af37; border: none; color: black; text-decoration: none; border-radius: 8px; box-shadow: 0 0 10px #d4af37;">
+    ✦ ENTRA NEL CERCHIO ✦
+  </a>
+</div>
+
 </body>
 </html>
