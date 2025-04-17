@@ -1,174 +1,116 @@
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <title>Prove Iniziatiche - Il Cerchio di Kaor</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>Prova Iniziatica</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     body {
-      background-color: black;
-      color: white;
-      font-family: 'Georgia', serif;
+      margin: 0;
       padding: 2rem;
-      max-width: 800px;
-      margin: auto;
+      background: black;
+      color: white;
+      font-family: 'Cormorant Garamond', serif;
+      line-height: 1.7;
+    }
+    h1 {
+      color: #d4af37;
+      text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+    }
+    .button {
+      display: inline-block;
+      padding: 1rem 2rem;
+      margin-top: 2rem;
+      background: linear-gradient(135deg, #d4af37, #c9a641);
+      color: black;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.7);
+      transition: transform 0.2s ease;
+    }
+    .button:hover {
+      transform: scale(1.05);
     }
     .question {
-      margin-bottom: 2rem;
-      opacity: 0;
-      animation: fadeIn 1s ease-in forwards;
-    }
-    .answers button {
-      display: block;
-      background: #111;
-      color: white;
-      border: 1px solid #555;
-      padding: 1rem;
-      margin: 0.5rem 0;
-      width: 100%;
-      cursor: pointer;
-      border-radius: 8px;
-    }
-    .answers button:hover {
-      background-color: #222;
-    }
-    #result {
-      display: none;
       margin-top: 3rem;
-      border-top: 1px solid #555;
-      padding-top: 2rem;
     }
-    a.link {
-      color: #d4af37;
-      text-decoration: underline;
+    .options button {
+      display: block;
+      margin: 1rem 0;
+      padding: 1rem;
+      background-color: #111;
+      border: 1px solid #d4af37;
+      border-radius: 8px;
+      color: white;
+      font-size: 1.1rem;
+      cursor: pointer;
     }
-    @keyframes fadeIn {
-      to { opacity: 1; }
+    audio {
+      margin-top: 2rem;
+      display: block;
     }
   </style>
 </head>
 <body>
-  <h1 class="text-yellow-300 uppercase">Le Prove Iniziatiche</h1>
-  <p><em>Rispondi senza mentire. Il Cerchio non legge le parole, ma l’intenzione.</em></p>
-  <div id="quiz"></div>
-  <div id="result"></div>
+  <h1>🔍 Prova Iniziatica</h1>
+  <p>Rispondi con sincerità. Le tue risposte non ti definiscono — ti ricordano.</p>
 
-  <script>
-    const quizData = [
-      {
-        question: "Cosa ti guida quando sei solo nel buio?",
-        answers: [
-          { text: "🔥 Un simbolo che vibra nella mente", value: "mutatore" },
-          { text: "💧 Una voce che non parla", value: "portavoce" },
-          { text: "🌬️ Il battito del mio cuore", value: "guardiano" },
-          { text: "🕸️ Il silenzio stesso", value: "guardiano" }
-        ]
-      },
-      {
-        question: "Un segno appare sulla tua pelle. Cosa fai?",
-        answers: [
-          { text: "✍️ Lo traccio ovunque, deve essere visto", value: "portavoce" },
-          { text: "🔐 Lo nascondo, è mio", value: "guardiano" },
-          { text: "📓 Lo studio per capirlo", value: "mutatore" },
-          { text: "🔥 Lo offro a chi sogna come me", value: "portavoce" }
-        ]
-      },
-      {
-        question: "Nel sogno, una porta. Per entrare, devi...",
-        answers: [
-          { text: "🗣️ Pronunciare 'Almaredos'", value: "portavoce" },
-          { text: "🤫 Tacere", value: "guardiano" },
-          { text: "🪞 Riflettere il volto nel vetro", value: "mutatore" },
-          { text: "👁️ Guardare senza occhi", value: "mutatore" }
-        ]
-      },
-      {
-        question: "Hai vissuto un dolore che non riesci a spiegare. Lo chiami...",
-        answers: [
-          { text: "💔 La mia iniziazione", value: "portavoce" },
-          { text: "⚰️ Una punizione", value: "nonpronto" },
-          { text: "🪦 Una lezione", value: "mutatore" },
-          { text: "🤖 Non ne ho avuto", value: "nonpronto" }
-        ]
-      },
-      {
-        question: "Cosa rappresenta per te la verità?",
-        answers: [
-          { text: "🧬 Mutazione", value: "mutatore" },
-          { text: "⚖️ Equilibrio", value: "guardiano" },
-          { text: "🛡️ Protezione", value: "guardiano" },
-          { text: "🤯 Illusione", value: "nonpronto" }
-        ]
-      },
-      {
-        question: "Cosa trovi se guardi dentro te stesso?",
-        answers: [
-          { text: "🔑 Una chiave spezzata", value: "mutatore" },
-          { text: "🌪️ Un vento che urla", value: "portavoce" },
-          { text: "🔮 Un’eco che si ripete", value: "portavoce" },
-          { text: "🧱 Solo pietra", value: "nonpronto" }
-        ]
-      }
-    ];
+  <div class="question">
+    <h2>1. Quale fiamma arde dentro di te?</h2>
+    <div class="options">
+      <button>📘 Disciplina – Mettere fine al caos interiore.</button>
+      <button>🔮 Intuizione – Visioni e presagi inspiegabili ti guidano.</button>
+      <button>🩸 Sacrificio – Proteggere ciò che è sacro, a ogni costo.</button>
+      <button>🧬 Trasformazione – Rinascere e abbandonare il passato.</button>
+    </div>
+  </div>
 
-    let currentQuestion = 0;
-    let scores = { mutatore: 0, portavoce: 0, guardiano: 0, nonpronto: 0 };
+  <div class="question">
+    <h2>2. Quando sei perso, quale parola invochi?</h2>
+    <div class="options">
+      <button>🗝️ Exsilum</button>
+      <button>🌫️ Velaria</button>
+      <button>💡 Intra Lux</button>
+      <button>🔥 Cor Ignis</button>
+    </div>
+  </div>
 
-    function showQuestion() {
-      const q = quizData[currentQuestion];
-      const container = document.getElementById("quiz");
-      container.innerHTML = `
-        <div class="question fade-in">
-          <h2>${q.question}</h2>
-          <div class="answers">
-            ${q.answers.map((a, i) => `<button onclick="answer('${a.value}')">${a.text}</button>`).join('')}
-          </div>
-        </div>
-      `;
-    }
+  <div class="question">
+    <h2>3. Stanotte, quale rito compirai?</h2>
+    <div class="options">
+      <button>✍️ Disegna un simbolo che non hai mai visto ma senti tuo.</button>
+      <button>🗣️ Pronuncia un nome che ti perseguita nei sogni.</button>
+      <button>🕯️ Veglia fino all’alba in silenzio.</button>
+      <button>🌒 Cammina da solo seguendo l’istinto.</button>
+    </div>
+  </div>
 
-    function answer(role) {
-      scores[role]++;
-      currentQuestion++;
-      if (currentQuestion < quizData.length) {
-        showQuestion();
-      } else {
-        showResult();
-      }
-    }
+  <div class="question">
+    <h2>4. Di cosa hai più paura?</h2>
+    <div class="options">
+      <button>⚫ Di essere visto per ciò che sei.</button>
+      <button>🧊 Di restare imprigionato nella forma.</button>
+      <button>🌪 Di non esistere mai davvero.</button>
+      <button>🚪 Di aprire la porta sbagliata.</button>
+    </div>
+  </div>
 
-    function showResult() {
-      const container = document.getElementById("quiz");
-      const result = document.getElementById("result");
-      container.innerHTML = "";
-      result.style.display = "block";
+  <div class="question">
+    <h2>5. Che segno porti sul collo?</h2>
+    <div class="options">
+      <button>🄁 Un occhio chiuso – Il Guardiano.</button>
+      <button>🔀 Un anello spezzato – Il Muratore.</button>
+      <button>🄂 Tre linee curve – Il Portavoce.</button>
+      <button>❌ Nessuno – Non sei ancora pronto.</button>
+    </div>
+  </div>
 
-      const highest = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
+  <a href="index.html" class="button">✦ RICOMINCIA IL VIAGGIO</a>
 
-      let message = "";
-      if (highest === "guardiano") {
-        message = `<h2>🄁 Guardiano del Silenzio</h2>
-        <p>“Tu vegli, ma non parli. Il tuo passo non lascia impronta, ma il tuo sguardo penetra ogni ombra. Il Cerchio ha bisogno di occhi chiusi che vedano oltre il visibile.”</p>
-        <p><a class="link" href="https://www.renaissancekingdoms.com/FichePersonnage.php?login=ispanicoii" target="_blank">Contatta il Maestro Ispanico</a></p>`;
-      } else if (highest === "mutatore") {
-        message = `<h2>🔀 Mutatore del Velo</h2>
-        <p>“Tu non temi la dissoluzione. Dove altri vedono confine, tu vedi transito. La tua essenza si plasma tra ciò che è stato e ciò che può ancora essere.”</p>
-        <p><a class="link" href="https://www.renaissancekingdoms.com/FichePersonnage.php?login=ispanicoii" target="_blank">Contatta il Maestro Ispanico</a></p>`;
-      } else if (highest === "portavoce") {
-        message = `<h2>🄂 Portavoce del Vento</h2>
-        <p>“Le voci perdute ti attraversano. Il silenzio ti parla, e tu restituisci la sua eco al mondo. Tu non sei la verità: tu la porti.”</p>
-        <p><a class="link" href="https://www.renaissancekingdoms.com/FichePersonnage.php?login=ispanicoii" target="_blank">Contatta il Maestro Ispanico</a></p>`;
-      } else {
-        message = `<h2>🚫 Non sei ancora pronto</h2>
-        <p>“Il Velo non ti ha riconosciuto. Non temere: ciò che non è ora, sarà domani. Torna quando il silenzio sarà più profondo, e il segno più chiaro.”</p>`;
-      }
-
-      result.innerHTML = message;
-    }
-
-    showQuestion();
-  </script>
+  <audio controls autoplay loop>
+    <source src="medieval-music.mp3" type="audio/mpeg" />
+  </audio>
 </body>
 </html>
