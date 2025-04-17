@@ -1,1 +1,100 @@
-<!DOCTYPE html><html><body><h1>Cerchio di Kaor</h1></body></html>
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Il Cerchio di Kaor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      color: white;
+      font-family: 'Cormorant Garamond', serif;
+      text-align: center;
+    }
+    section {
+      display: none;
+      min-height: 100vh;
+      padding: 2rem;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    section.active {
+      display: flex;
+    }
+    .button {
+      margin-top: 2rem;
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, #d4af37, #c9a641);
+      color: black;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    img {
+      width: 200px;
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 0 10px #d4af37);
+    }
+    h1, h2 {
+      color: #d4af37;
+    }
+  </style>
+</head>
+<body>
+  <audio id="music" loop>
+    <source src="medieval-music.mp3" type="audio/mpeg" />
+  </audio>
+
+  <section id="step-0" class="active">
+    <img src="kaor-sigil.png" alt="Sigillo del Cerchio" />
+    <h1>“Non sei tu a cercare il Cerchio.<br>È il Cerchio che, nel silenzio, ti ha trovato.”</h1>
+    <div class="button" onclick="start()">✦ PROSEGUI</div>
+  </section>
+
+  <section id="step-1">
+    <h2>📜 Codice Sacro del Cerchio di Kaor</h2>
+    <p>“Chi parla ha dimenticato. Chi tace ricorda.”</p>
+    <div class="button" onclick="next()">Avanti</div>
+  </section>
+
+  <section id="step-2">
+    <h2>🌒 Soglia dell’Oblio</h2>
+    <p>Ora che sei arrivato in questo luogo, devi decidere...<br>Se resti, scordatene. Se entri… smetti di essere.</p>
+    <div class="button" onclick="next()">Sono pronto</div>
+  </section>
+
+  <section id="step-3">
+    <h2>🕯 Preghiera del Varco</h2>
+    <p><em>Maestro del Cerchio,<br>spoglio il mio nome...<br>Io sarò Maestro.</em></p>
+    <div class="button" onclick="next()">Avanti</div>
+  </section>
+
+  <section id="step-4">
+    <h2>Inizio del Quiz</h2>
+    <p>(Qui in seguito saranno mostrate le domande iniziatiche...)</p>
+    <div class="button" onclick="next()">Avanti</div>
+  </section>
+
+  <script>
+    let current = 0;
+    function start() {
+      const music = document.getElementById('music');
+      music.play().catch(() => {});
+      next();
+    }
+    function next() {
+      document.getElementById('step-' + current).classList.remove('active');
+      current++;
+      const nextSection = document.getElementById('step-' + current);
+      if (nextSection) {{
+        nextSection.classList.add('active');
+      }}
+    }
+  </script>
+</body>
+</html>
