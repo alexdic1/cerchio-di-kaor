@@ -2,74 +2,64 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <title>Il Cerchio di Kaor</title>
+  <title>Il Cerchio di Kaor - Inizio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: Georgia, serif;
       background: black;
       color: white;
-      padding: 2rem;
+      font-family: 'Cormorant Garamond', serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      height: 100vh;
     }
-    h1, h2, h3 {
+
+    img {
+      width: 200px;
+      height: auto;
+      margin-bottom: 2rem;
+      filter: drop-shadow(0 0 10px #d4af37);
+    }
+
+    h1 {
       color: #d4af37;
+      font-size: 1.8rem;
+      max-width: 80%;
+      line-height: 1.6;
+      text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
     }
-    .button {
-      display: inline-block;
-      padding: 1rem 2rem;
+
+    a.button {
       margin-top: 3rem;
-      background: #d4af37;
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, #d4af37, #c9a641);
       color: black;
       font-weight: bold;
-      text-decoration: none;
       border-radius: 10px;
-      box-shadow: 0 0 10px #d4af37;
+      text-decoration: none;
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.7);
+      transition: transform 0.2s ease;
     }
+
+    a.button:hover {
+      transform: scale(1.05);
+    }
+
     audio {
-      display: block;
-      margin-top: 2rem;
+      display: none;
     }
   </style>
 </head>
 <body>
-  <h1>📜 Codice Sacro del Cerchio di Kaor</h1>
-  <blockquote>“Chi parla ha dimenticato. Chi tace ricorda.”</blockquote>
-
-  <h2>🕯 Il Nome dell’Ordine</h2>
-  <p><strong>Il Cerchio di Kaor</strong><br>Non è un nome. È un’eco. Kaor non si dice, si percepisce.</p>
-
-  <h2>📖 Origine del Cerchio</h2>
-  <p>Nacque da un sogno. Sette viandanti, ignari l’uno dell’altro, sognarono la stessa visione...</p>
-
-  <h2>🩸 Scopo e Ordinamento</h2>
-  <blockquote>“Non costruire un tempio. Sii il tempio.”</blockquote>
-  <ul>
-    <li><strong>1. Ascensione della Pietra Imperfetta:</strong> L’iniziato è pietra grezza...</li>
-    <li><strong>2. Fratellanza Oscura e Silente:</strong> Non esistono gradi visibili. Solo voci nel buio.</li>
-    <li><strong>3. Conoscenza oltre la Forma:</strong> Il sapere è un veleno dolce che cura.</li>
-    <li><strong>4. Fondazione della Città Soglia:</strong> La città del Cerchio non ha luogo fisico.</li>
-  </ul>
-
-  <h2>🧭 I Tre Cammini</h2>
-  <ul>
-    <li>🄁 Il Sentiero dell’Occhio Serrato – È il Guardiano.</li>
-    <li>🔀 Il Cammino dell’Anello Frammentato – È il Muratore.</li>
-    <li>🄂 La Via del Vento Interno – È il Portavoce.</li>
-  </ul>
-
-  <h2>🔎 Il Simbolismo</h2>
-  <p>Il Sigillo di Kaor rappresenta il Nome non detto, il Vuoto prima della Forma, l’Occhio che non guarda, ma sente.</p>
-  <p><strong>Parola Cifrata:</strong> Almaredos</p>
-
-  <h2>✨ Il Giuramento dell’Iniziato</h2>
-  <blockquote>
-    “Nel Nome che non si dice, sotto il Velo che non si alza, io, ombra senza passato,<br>
-    giuro di custodire i segni, di spezzare i veli, e di ritrovare il Ricordo perduto. Così sia.”
-  </blockquote>
-
-  <a href="soglia.html" class="button">✦ PROSEGUI</a>
-  <audio controls autoplay loop>
+  <img src="kaor-sigil.png" alt="Sigillo del Cerchio di Kaor" />
+  <h1>“Non sei tu a cercare il Cerchio.<br>È il Cerchio che, nel silenzio, ti ha trovato.”</h1>
+  <a href="index.html" class="button">✦ ENTRA</a>
+  <audio autoplay loop>
     <source src="medieval-music.mp3" type="audio/mpeg" />
   </audio>
 </body>
