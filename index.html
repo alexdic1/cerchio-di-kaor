@@ -43,6 +43,11 @@
     h1, h2 {
       color: #d4af37;
     }
+    .desc {
+      max-width: 600px;
+      margin-top: 1rem;
+      font-size: 1.2rem;
+    }
   </style>
 </head>
 <body>
@@ -57,44 +62,121 @@
   </section>
 
   <section id="step-1">
-    <h2>📜 Codice Sacro del Cerchio di Kaor</h2>
+    <h2>📜 Codice Sacro</h2>
     <p>“Chi parla ha dimenticato. Chi tace ricorda.”</p>
     <div class="button" onclick="next()">Avanti</div>
   </section>
 
   <section id="step-2">
-    <h2>🌒 Soglia dell’Oblio</h2>
+    <h2>Soglia dell’Oblio</h2>
     <p>Ora che sei arrivato in questo luogo, devi decidere...<br>Se resti, scordatene. Se entri… smetti di essere.</p>
     <div class="button" onclick="next()">Sono pronto</div>
   </section>
 
   <section id="step-3">
-    <h2>🕯 Preghiera del Varco</h2>
-    <p><em>Maestro del Cerchio,<br>spoglio il mio nome...<br>Io sarò Maestro.</em></p>
+    <h2>🕯 Preghiera</h2>
+    <p class="desc">Maestro del Cerchio, spoglio il mio nome... Io sarò Maestro.</p>
     <div class="button" onclick="next()">Avanti</div>
   </section>
 
-  <section id="step-4">
-    <h2>Inizio del Quiz</h2>
-    <p>(Qui in seguito saranno mostrate le domande iniziatiche...)</p>
-    <div class="button" onclick="next()">Avanti</div>
+  <section id="quiz">
+    <h2 id="question"></h2>
+    <div id="options"></div>
+  </section>
+
+  <section id="result">
+    <h2 id="roleTitle"></h2>
+    <p id="roleDesc" class="desc"></p>
+    <p id="roleWord" class="desc"></p>
+    <a href="https://www.renaissancekingdoms.com/FichePersonnage.php?login=ispanicoii" target="_blank" class="button">Ora puoi contattare il Maestro</a>
   </section>
 
   <script>
     let current = 0;
-    function start() {
-      const music = document.getElementById('music');
-      music.play().catch(() => {});
-      next();
-    }
-    function next() {
-      document.getElementById('step-' + current).classList.remove('active');
-      current++;
-      const nextSection = document.getElementById('step-' + current);
-      if (nextSection) {{
-        nextSection.classList.add('active');
+    const music = document.getElementById("music");
+
+    const questions = [
+      ["Cosa senti muoversi in te più spesso?", ["Ordine e rigore", "Visioni e presagi", "Ricostruzione e trasformazione"]],
+      ["In un sogno, ti trovi davanti a un portale. Cosa fai?", ["Lo sorvegli", "Lo attraversi", "Ascolti oltre"]],
+      ["Qual è la tua paura più profonda?", ["Il caos", "L'oblio", "Il fallimento"]],
+      ["Quale suono ti guida?", ["Il silenzio", "Il mormorio", "Il battito"]],
+      ["Cosa lasci al Cerchio?", ["La vista", "La voce", "La pelle"]],
+      ["In quale simbolo ti riconosci?", ["Occhio chiuso", "Cerchio spezzato", "Vento sottile"]]
+    ];
+
+    let qIndex = 0;
+    let score = {{G:0, P:0, M:0}};
+
+    const roles = {{
+      G: {{
+        title: "🄁 Il Guardiano",
+        desc: "Veglia tra il visibile e l’invisibile. Non parla, osserva. Custode delle soglie.",
+        word: "Parola segreta: Vigilum"
+      }},
+      P: {{
+        title: "🄂 Il Portavoce",
+        desc: "Traduttore di sogni e visioni. Guida con parole che non sono sue. Ponte tra dentro e fuori.",
+        word: "Parola segreta: Veritas"
+      }},
+      M: {{
+        title: "🔀 Il Muratore",
+        desc: "Costruttore invisibile. Ogni atto è pietra. Non guida, non segue. Edifica dove altri vedranno.",
+        word: "Parola segreta: Structum"
       }}
-    }
+    }};
+
+    function start() {{
+      music.play().catch(() => {{ }});
+      document.getElementById("step-" + current).classList.remove("active");
+      current = 1;
+      document.getElementById("step-" + current).classList.add("active");
+    }}
+
+    function next() {{
+      document.getElementById("step-" + current).classList.remove("active");
+      current++;
+      const nextSec = document.getElementById("step-" + current);
+      if (nextSec) {{
+        nextSec.classList.add("active");
+      }} else {{
+        startQuiz();
+      }}
+    }}
+
+    function startQuiz() {{
+      document.getElementById("quiz").classList.add("active");
+      showQuestion();
+    }}
+
+    function showQuestion() {{
+      document.getElementById("question").textContent = questions[qIndex][0];
+      const opt = document.getElementById("options");
+      opt.innerHTML = "";
+      questions[qIndex][1].forEach((txt, i) => {{
+        const b = document.createElement("button");
+        b.className = "button";
+        b.textContent = txt;
+        b.onclick = () => {{
+          if (i === 0) score.G++;
+          else if (i === 1) score.P++;
+          else score.M++;
+          qIndex++;
+          if (qIndex < questions.length) showQuestion();
+          else showResult();
+        }};
+        opt.appendChild(b);
+      }});
+    }}
+
+    function showResult() {{
+      document.getElementById("quiz").classList.remove("active");
+      document.getElementById("result").classList.add("active");
+      const max = Object.entries(score).sort((a,b)=>b[1]-a[1])[0][0];
+      const r = roles[max];
+      document.getElementById("roleTitle").textContent = r.title;
+      document.getElementById("roleDesc").textContent = r.desc;
+      document.getElementById("roleWord").textContent = r.word;
+    }}
   </script>
 </body>
 </html>
