@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>La Voce nel Vuoto</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background: url('indovinello-sfondo.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #f5f5f5;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem;
+      backdrop-filter: brightness(0.8);
+    }
+
+    .container {
+      max-width: 800px;
+      background-color: rgba(0, 0, 0, 0.65);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 1.2rem;
+      color: #ffe08a;
+    }
+
+    p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .options button {
+      display: block;
+      margin: 0.7rem auto;
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      color: #111;
+      background-color: #d4af37;
+      transition: background-color 0.3s;
+    }
+
+    .options button:hover {
+      background-color: #e0c770;
+    }
+
+    .feedback {
+      margin-top: 1.5rem;
+      font-style: italic;
+      color: #fca311;
+    }
+
+    .feedback img {
+      margin-top: 1rem;
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      border: 2px solid #ffe08a;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
+    }
+
+    .music-toggle {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: #ffe08a;
+      border: 1px solid #ffe08a;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .music-toggle:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  </style>
+</head>
+<body>
+
+<audio id="music" loop>
+  <source src="ERA - Ameno.mp3" type="audio/mpeg" />
+</audio>
+
+<button class="music-toggle" onclick="toggleMusic()">🎵 Apri le orecchie dell’anima</button>
+
+<div class="container">
+  <h1>Vediamo se sei davvero degno di passare la Soglia...</h1>
+  <p>
+    “Il Cerchio non parla in parole.  
+    Ma lascia segni che solo chi è stato spezzato sa ascoltare.”  
+  </p>
+  <p>
+    Una figura ti si avvicina nel sogno. Non ha volto.<br>
+    Ti pone una domanda:<br><br>
+    <em>"Non sono oggetto. Non sono nome.<br>
+    Sono ciò che resta quando nulla resta.<br>
+    Sono il confine tra ricordo e origine.<br>
+    Chi sono?"</em>
+  </p>
+
+  <div class="options">
+    <button onclick="showFeedback(false)">Il Vuoto</button>
+    <button onclick="showFeedback(true)">Il Silenzio</button>
+    <button onclick="showFeedback(false)">L'Ombra</button>
+    <button onclick="showFeedback(false)">Il Nome Perduto</button>
+  </div>
+
+  <div id="feedback" class="feedback"></div>
+</div>
+
+<script>
+  const music = document.getElementById("music");
+  let playing = false;
+
+  function toggleMusic() {
+    if (!playing) {
+      music.play().catch(() => {});
+      playing = true;
+    } else {
+      music.pause();
+      playing = false;
+    }
+  }
+
+  function showFeedback(correct) {
+    const feedback = document.getElementById("feedback");
+    if (correct) {
+      feedback.innerHTML = "🌙 La voce tace. Hai compreso. <br><a href='quiz-1.html'><button>Prosegui</button></a>";
+    } else {
+      feedback.innerHTML = "Il Cerchio non giudica, ma attende che tu sia pronto.<br><img src='errore-visione.jpg' alt='Visione Mistica' />";
+    }
+  }
+</script>
+
+</body>
+</html>
