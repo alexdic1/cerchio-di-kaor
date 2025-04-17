@@ -17,12 +17,15 @@
       align-items: center;
     }
     section {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      display: none;
       padding: 2rem;
       min-height: 100vh;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .active {
+      display: flex;
     }
     .button {
       background: #d4af37;
@@ -62,16 +65,31 @@
   <source src="Enigma - Sadeness (Full Version).mp3" type="audio/mpeg" />
 </audio>
 
-<section>
+<section id="page1" class="active">
   <img src="kaor-sigil.jpeg" alt="Sigillo di Kaor" />
   <h1>“Non sei tu a cercare il Cerchio. È il Cerchio che ti ha trovato.”</h1>
   <button class="music-toggle" onclick="toggleMusic()">🎵 Apri le orecchie dell’anima</button>
-  <a href="soglia.html"><button class="button">Prosegui</button></a>
+  <button class="button" onclick="nextPage()">Prosegui</button>
+</section>
+
+<section id="page2">
+  <h2>Benvenuto oltre la soglia</h2>
+  <p>Ora che sei qui, la trasformazione ha inizio.</p>
 </section>
 
 <script>
+  const pages = ["page1", "page2"];
+  let current = 0;
   const music = document.getElementById("music");
   let isPlaying = false;
+
+  function nextPage() {
+    document.getElementById(pages[current]).classList.remove("active");
+    current++;
+    if (pages[current]) {
+      document.getElementById(pages[current]).classList.add("active");
+    }
+  }
 
   function toggleMusic() {
     if (!isPlaying) {
