@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Il Cerchio di Kaor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      margin: 0;
+      font-family: serif;
+      background-color: black;
+      color: white;
+      text-align: center;
+    }
+    section {
+      display: none;
+      padding: 2rem;
+      min-height: 100vh;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .active {
+      display: flex;
+    }
+    .button {
+      background: #d4af37;
+      color: black;
+      padding: 1rem 2rem;
+      border: none;
+      margin-top: 2rem;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 10px;
+    }
+    img {
+      width: 200px;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+<audio id="music" loop>
+  <source src="Enigma - Sadeness (Full Version).mp3" type="audio/mpeg" />
+</audio>
+
+<section id="page1" class="active">
+  <img src="kaor-sigil.jpeg" alt="Sigillo di Kaor" />
+  <h1>“Non sei tu a cercare il Cerchio. È il Cerchio che ti ha trovato.”</h1>
+  <button class="button" onclick="nextPage()">Prosegui</button>
+</section>
+
+<section id="page2">
+  <h2>Benvenuto oltre la soglia</h2>
+  <p>Ora che sei qui, la trasformazione ha inizio.</p>
+</section>
+
+<script>
+  const pages = ["page1", "page2"];
+  let current = 0;
+  const music = document.getElementById("music");
+
+  function nextPage() {
+    music.play().catch(() => {});
+    document.getElementById(pages[current]).classList.remove("active");
+    current++;
+    if (pages[current]) {
+      document.getElementById(pages[current]).classList.add("active");
+    }
+  }
+</script>
+
+</body>
+</html>
