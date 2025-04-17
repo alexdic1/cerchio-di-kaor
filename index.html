@@ -1,41 +1,33 @@
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <title>Il Cerchio di Kaor - Inizio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Il Cerchio di Kaor - Iniziazione</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       background: black;
       color: white;
       font-family: 'Cormorant Garamond', serif;
+      text-align: center;
+      overflow-x: hidden;
+    }
+    section {
+      min-height: 100vh;
+      padding: 2rem;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
-      text-align: center;
-      height: 100vh;
+      justify-content: center;
     }
-
-    img {
-      width: 200px;
-      height: auto;
-      margin-bottom: 2rem;
-      filter: drop-shadow(0 0 10px #d4af37);
+    .hidden {
+      display: none;
     }
-
-    h1 {
-      color: #d4af37;
-      font-size: 1.8rem;
-      max-width: 80%;
-      line-height: 1.6;
-      text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
-    }
-
-    a.button {
-      margin-top: 3rem;
+    .button {
+      margin-top: 2rem;
       padding: 1rem 2rem;
       background: linear-gradient(135deg, #d4af37, #c9a641);
       color: black;
@@ -43,24 +35,89 @@
       border-radius: 10px;
       text-decoration: none;
       box-shadow: 0 0 20px rgba(212, 175, 55, 0.7);
-      transition: transform 0.2s ease;
+      cursor: pointer;
     }
-
-    a.button:hover {
-      transform: scale(1.05);
+    img {
+      width: 200px;
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 0 10px #d4af37);
     }
-
-    audio {
-      display: none;
+    h1, h2 {
+      color: #d4af37;
+    }
+    .word {
+      color: #c0b283;
+      font-style: italic;
     }
   </style>
 </head>
 <body>
-  <img src="kaor-sigil.png" alt="Sigillo del Cerchio di Kaor" />
-  <h1>“Non sei tu a cercare il Cerchio.<br>È il Cerchio che, nel silenzio, ti ha trovato.”</h1>
-  <a href="codice.html" class="button">✦ ENTRA</a>
-  <audio autoplay loop>
-    <source src="medieval-music.mp3" type="audio/mpeg" />
+  <audio id="music" autoplay loop>
+    <source src="medieval-music.mp3" type="audio/mpeg">
   </audio>
+
+  <section id="intro">
+    <img src="kaor-sigil.png" alt="Sigillo del Cerchio" />
+    <h1>“Non sei tu a cercare il Cerchio.<br>È il Cerchio che, nel silenzio, ti ha trovato.”</h1>
+    <div class="button" onclick="showSection('codice')">✦ PROSEGUI</div>
+  </section>
+
+  <section id="codice" class="hidden">
+    <h2>📜 Codice Sacro del Cerchio di Kaor</h2>
+    <p>“Chi parla ha dimenticato. Chi tace ricorda.”</p>
+    <p>Il Cerchio di Kaor nacque da un sogno condiviso da sette viandanti...</p>
+    <div class="button" onclick="showSection('soglia')">Avanti</div>
+  </section>
+
+  <section id="soglia" class="hidden">
+    <h2>🌒 Soglia dell’Oblio</h2>
+    <p>Ora che sei arrivato in questo luogo, devi decidere...</p>
+    <div class="button" onclick="showSection('preghiera')">Sono pronto</div>
+  </section>
+
+  <section id="preghiera" class="hidden">
+    <h2>🕯 Preghiera del Varco</h2>
+    <p><em>Recita con calma</em></p>
+    <p>Maestro del Cerchio,<br>spoglio il mio nome...<br>Io sarò Maestro.</p>
+    <div class="button" onclick="showSection('quiz1')">Avanti</div>
+  </section>
+
+  <section id="quiz1" class="hidden">
+    <h2>🧠 Quale fiamma arde dentro di te?</h2>
+    <div class="button" onclick="showSection('guardiano')">Ordine e rigore</div>
+    <div class="button" onclick="showSection('muratore')">Mutamento e rinascita</div>
+    <div class="button" onclick="showSection('portavoce')">Voci e presagi</div>
+    <div class="button" onclick="showSection('nonpronto')">Non so ancora</div>
+  </section>
+
+  <section id="guardiano" class="hidden">
+    <h2>🄁 Il Guardiano</h2>
+    <p>Veglia sui varchi tra il visibile e l’invisibile.<br>Preserva l’equilibrio, vede oltre il velo.</p>
+    <p class="word">Parola segreta: <strong>Vigilum</strong></p>
+  </section>
+
+  <section id="muratore" class="hidden">
+    <h2>🔀 Il Muratore</h2>
+    <p>Costruisce nel silenzio. Ogni parola è un mattone del tempio che verrà.</p>
+    <p class="word">Parola segreta: <strong>Structum</strong></p>
+  </section>
+
+  <section id="portavoce" class="hidden">
+    <h2>🄂 Il Portavoce</h2>
+    <p>Ascolta l’invisibile, interpreta sogni e oracoli dimenticati.</p>
+    <p class="word">Parola segreta: <strong>Veritas</strong></p>
+  </section>
+
+  <section id="nonpronto" class="hidden">
+    <h2>❌ Non sei ancora pronto</h2>
+    <p>Il Cerchio ha atteso. Ma il silenzio in te non è ancora nato.</p>
+  </section>
+
+  <script>
+    function showSection(id) {
+      document.querySelectorAll("section").forEach(s => s.classList.add("hidden"));
+      document.getElementById(id).classList.remove("hidden");
+    }
+  </script>
 </body>
 </html>
