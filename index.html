@@ -5,96 +5,214 @@
   <meta charset="UTF-8" />
   <title>Il Cerchio di Kaor</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     body {
       margin: 0;
-      font-family: serif;
-      background-color: black;
+      background: black;
       color: white;
+      font-family: 'Cormorant Garamond', serif;
       text-align: center;
+      overflow-x: hidden;
     }
     section {
       display: none;
-      padding: 2rem;
       min-height: 100vh;
-      justify-content: center;
-      align-items: center;
+      padding: 2rem;
       flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
     }
-    .active {
+    section.active {
       display: flex;
+      opacity: 1;
     }
     .button {
-      background: #d4af37;
-      color: black;
-      padding: 1rem 2rem;
-      border: none;
       margin-top: 2rem;
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, #d4af37, #c9a641);
+      color: black;
       font-weight: bold;
-      cursor: pointer;
       border-radius: 10px;
-    }
-    .music-toggle {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      background: transparent;
-      color: #d4af37;
-      border: 2px solid #d4af37;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      font-weight: bold;
       cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+    .button:hover {
+      background: #ffda44;
     }
     img {
       width: 200px;
       margin-bottom: 1rem;
+      filter: drop-shadow(0 0 10px #d4af37);
+    }
+    h1, h2 {
+      color: #d4af37;
+    }
+    .desc {
+      max-width: 600px;
+      margin-top: 1rem;
+      font-size: 1.2rem;
+    }
+    .hidden {
+      display: none;
+    }
+    #secret {
+      margin-top: 2rem;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 1rem;
+      border-radius: 10px;
+      border: 1px dashed #d4af37;
     }
   </style>
 </head>
 <body>
+  <audio id="music" loop>
+    <source src="medieval-music.mp3" type="audio/mpeg" />
+  </audio>
 
-<audio id="music" loop>
-  <source src="Enigma - Sadeness (Full Version).mp3" type="audio/mpeg" />
-</audio>
+  <section id="step-0" class="active">
+    <img src="kaor-sigil.png" alt="Sigillo del Cerchio" />
+    <h1>“Non sei tu a cercare il Cerchio.<br>È il Cerchio che, nel silenzio, ti ha trovato.”</h1>
+    <div class="button" onclick="start()">✦ PROSEGUI</div>
+  </section>
 
-<button class="music-toggle" onclick="toggleMusic()">🎵 Apri le orecchie dell’anima</button>
+  <section id="step-1">
+    <h2>📜 Codice Sacro</h2>
+    <p>“Chi parla ha dimenticato. Chi tace ricorda.”</p>
+    <div class="button" onclick="next()">Avanti</div>
+  </section>
 
-<section id="page1" class="active">
-  <img src="kaor-sigil.jpeg" alt="Sigillo di Kaor" />
-  <h1>“Non sei tu a cercare il Cerchio. È il Cerchio che ti ha trovato.”</h1>
-  <button class="button" onclick="nextPage()">Prosegui</button>
-</section>
+  <section id="step-2">
+    <h2>Soglia dell’Oblio</h2>
+    <p>Ora che sei arrivato in questo luogo, devi decidere...<br>Se resti, scordatene. Se entri… smetti di essere.</p>
+    <div class="button" onclick="next()">Sono pronto</div>
+  </section>
 
-<section id="page2">
-  <h2>Benvenuto oltre la soglia</h2>
-  <p>Ora che sei qui, la trasformazione ha inizio.</p>
-</section>
+  <section id="step-3">
+    <h2>🕯 Preghiera</h2>
+    <p class="desc">Maestro del Cerchio, spoglio il mio nome... Io sarò Maestro.</p>
+    <div class="button" onclick="next()">Avanti</div>
+  </section>
 
-<script>
-  const pages = ["page1", "page2"];
-  let current = 0;
-  const music = document.getElementById("music");
-  let isPlaying = false;
+  <section id="step-4">
+    <h2>Parola di accesso</h2>
+    <p class="desc">Inserisci la parola segreta per rivelare il contenuto nascosto.</p>
+    <input type="text" id="passphrase" placeholder="Parola segreta" />
+    <div class="button" onclick="checkSecret()">Sblocca</div>
+    <div id="secret" class="hidden">
+      <p>Accesso concesso. I contenuti sono stati rivelati.</p>
+      <div class="button" onclick="next()">Avanti</div>
+    </div>
+  </section>
 
-  function nextPage() {
-    document.getElementById(pages[current]).classList.remove("active");
-    current++;
-    if (pages[current]) {
-      document.getElementById(pages[current]).classList.add("active");
-    }
-  }
+  <section id="quiz" class="hidden">
+    <h2 id="question"></h2>
+    <div id="options"></div>
+  </section>
 
-  function toggleMusic() {
-    if (!isPlaying) {
-      music.play().catch(() => {});
-      isPlaying = true;
-    } else {
-      music.pause();
-      isPlaying = false;
-    }
-  }
-</script>
+  <section id="result" class="hidden">
+    <h2 id="roleTitle"></h2>
+    <p id="roleDesc" class="desc"></p>
+    <p id="roleWord" class="desc"></p>
+    <a href="https://www.renaissancekingdoms.com/FichePersonnage.php?login=ispanicoii" target="_blank" class="button">Ora puoi contattare il Maestro</a>
+  </section>
 
+  <script>
+    let current = 0;
+    const music = document.getElementById("music");
+
+    const questions = [
+      ["Cosa senti muoversi in te più spesso?", ["Ordine e rigore", "Visioni e presagi", "Ricostruzione e trasformazione"]],
+      ["In un sogno, ti trovi davanti a un portale. Cosa fai?", ["Lo sorvegli", "Lo attraversi", "Ascolti oltre"]],
+      ["Qual è la tua paura più profonda?", ["Il caos", "L'oblio", "Il fallimento"]],
+      ["Quale suono ti guida?", ["Il silenzio", "Il mormorio", "Il battito"]],
+      ["Cosa lasci al Cerchio?", ["La vista", "La voce", "La pelle"]],
+      ["In quale simbolo ti riconosci?", ["Occhio chiuso", "Cerchio spezzato", "Vento sottile"]]
+    ];
+
+    let qIndex = 0;
+    let score = {{G:0, P:0, M:0}};
+
+    const roles = {{
+      G: {{
+        title: "🄁 Il Guardiano",
+        desc: "Veglia tra il visibile e l’invisibile. Non parla, osserva. Custode delle soglie.",
+        word: "Parola segreta: Vigilum"
+      }},
+      P: {{
+        title: "🄂 Il Portavoce",
+        desc: "Traduttore di sogni e visioni. Guida con parole che non sono sue. Ponte tra dentro e fuori.",
+        word: "Parola segreta: Veritas"
+      }},
+      M: {{
+        title: "🔀 Il Muratore",
+        desc: "Costruttore invisibile. Ogni atto è pietra. Non guida, non segue. Edifica dove altri vedranno.",
+        word: "Parola segreta: Structum"
+      }}
+    }};
+
+    function start() {{
+      music.play().catch(() => {{ }});
+      document.getElementById("step-" + current).classList.remove("active");
+      current = 1;
+      document.getElementById("step-" + current).classList.add("active");
+    }}
+
+    function next() {{
+      document.getElementById("step-" + current).classList.remove("active");
+      current++;
+      const nextSec = document.getElementById("step-" + current);
+      if (nextSec) {{
+        nextSec.classList.add("active");
+      }} else {{
+        startQuiz();
+      }}
+    }}
+
+    function checkSecret() {{
+      const input = document.getElementById("passphrase").value.trim().toLowerCase();
+      if (input === "almaredos") {{
+        document.getElementById("secret").classList.remove("hidden");
+      }}
+    }}
+
+    function startQuiz() {{
+      document.getElementById("quiz").classList.remove("hidden");
+      showQuestion();
+    }}
+
+    function showQuestion() {{
+      document.getElementById("question").textContent = questions[qIndex][0];
+      const opt = document.getElementById("options");
+      opt.innerHTML = "";
+      questions[qIndex][1].forEach((txt, i) => {{
+        const b = document.createElement("button");
+        b.className = "button";
+        b.textContent = txt;
+        b.onclick = () => {{
+          if (i === 0) score.G++;
+          else if (i === 1) score.P++;
+          else score.M++;
+          qIndex++;
+          if (qIndex < questions.length) showQuestion();
+          else showResult();
+        }};
+        opt.appendChild(b);
+      }});
+    }}
+
+    function showResult() {{
+      document.getElementById("quiz").classList.add("hidden");
+      document.getElementById("result").classList.remove("hidden");
+      const max = Object.entries(score).sort((a,b)=>b[1]-a[1])[0][0];
+      const r = roles[max];
+      document.getElementById("roleTitle").textContent = r.title;
+      document.getElementById("roleDesc").textContent = r.desc;
+      document.getElementById("roleWord").textContent = r.word;
+    }}
+  </script>
 </body>
 </html>
